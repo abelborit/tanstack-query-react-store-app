@@ -35,7 +35,7 @@ export const NewProduct = () => {
           }}>
 
             <Image
-              src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg"
+              src="https://images.pexels.com/photos/13534751/pexels-photo-13534751.jpeg?_gl=1*1aa14c3*_ga*MTY2NjY3MTEyMC4xNzU0NTM5NDYx*_ga_8JE65Q40S6*czE3NTQ1Mzk0NjEkbzEkZzEkdDE3NTQ1Mzk1MTgkajMkbDAkaDA."
             />
           </div>
           

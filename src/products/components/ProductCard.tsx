@@ -7,7 +7,7 @@ export const ProductCard = () => {
     <Card
       className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
       <div className="w-full md:w-1/3 bg-white grid place-items-center">
-        <Image src="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+        <Image src="https://images.pexels.com/photos/2783873/pexels-photo-2783873.jpeg?_gl=1*14lmkkh*_ga*MTY2NjY3MTEyMC4xNzU0NTM5NDYx*_ga_8JE65Q40S6*czE3NTQ1Mzk0NjEkbzEkZzEkdDE3NTQ1Mzk0NzIkajQ5JGwwJGgw"
           alt="tailwind logo"
           width={300}
           height={400}
