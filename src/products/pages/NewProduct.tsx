@@ -1,17 +1,11 @@
 import { Button, Image, Input, Textarea } from "@nextui-org/react";
-import { useMutation } from "@tanstack/react-query";
 // import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { createProductAction } from "../services/createProduct.actions";
 import { NewProductInterface } from "../interfaces/products.interface";
+import { useCreateProductMutation } from "../hooks/useCreateProductMutation";
 
 export const NewProduct = () => {
-  const productMutation = useMutation({
-    mutationFn: createProductAction,
-    onSuccess: (data, variables, context) => {
-      console.log({ data, variables, context });
-    },
-  });
+  const { productMutation } = useCreateProductMutation();
 
   // const [tempImage, setTempImage] = useState("");
 
