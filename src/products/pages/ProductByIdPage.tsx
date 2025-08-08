@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useProductByIdQuery } from "../hooks/useProductByIdQuery";
 import { ProductCard } from "../components/ProductCard";
@@ -8,6 +9,10 @@ export const ProductByIdPage = () => {
   const { productByIdQuery } = useProductByIdQuery({
     productId: params["productId"] ?? "",
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex-col">
