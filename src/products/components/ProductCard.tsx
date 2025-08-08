@@ -1,6 +1,7 @@
 import { Card, Image } from "@nextui-org/react";
 import { ProductInterface } from "../interfaces/products.interface";
 import { Link } from "react-router-dom";
+import { useProductPrefetchQuery } from "../hooks/useProductPrefetchQuery";
 
 interface ProductCardProps {
   product: ProductInterface;
@@ -11,8 +12,13 @@ export const ProductCard = ({
   product,
   fullDescription = false,
 }: ProductCardProps) => {
+  const { handlePreFetchProduct } = useProductPrefetchQuery();
+
   return (
-    <Link to={`/product/${product.id}`}>
+    <Link
+      to={`/product/${product.id}`}
+      onMouseEnter={() => handlePreFetchProduct(product.id.toString())}
+    >
       <Card className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
         <div className="w-full md:w-1/3 bg-white grid place-items-center">
           <Image
