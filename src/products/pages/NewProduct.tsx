@@ -1,21 +1,23 @@
 import { Button, Image, Input, Textarea } from "@nextui-org/react";
+import { useMutation } from "@tanstack/react-query";
 // import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-
-interface NewProductProps {
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-}
+import { createProductAction } from "../services/createProduct.actions";
+import { NewProductInterface } from "../interfaces/products.interface";
 
 export const NewProduct = () => {
+  const productMutation = useMutation({
+    mutationFn: createProductAction,
+    onSuccess: (data, variables, context) => {
+      console.log({ data, variables, context });
+    },
+  });
+
   // const [tempImage, setTempImage] = useState("");
 
   /* algo importante de "react-hook-form" es que evita hacer re-renderizaciones innecesarias, por ejemplo en este caso estamos colocando el "watch", entonces, cada que se actualice el valor que le pasemo como -- watch("image") -- solo se cambiará ese valor y no todo el formulario y eso nos sirve para lanzar un efecto o usar el nuevo valor directamente no sea necesario */
   const { control, handleSubmit /* , register */, watch } =
-    useForm<NewProductProps>({
+    useForm<NewProductInterface>({
       defaultValues: {
         title: "Teclado Prueba X200",
         price: 200.2,
@@ -36,8 +38,9 @@ export const NewProduct = () => {
   //   setTempImage(newImage);
   // }, [newImage]);
 
-  const onSubmit: SubmitHandler<NewProductProps> = (dataForm) => {
-    console.log(dataForm);
+  const onSubmit: SubmitHandler<NewProductInterface> = (dataForm) => {
+    // console.log(dataForm);
+    productMutation.mutate({ newProduct: dataForm });
   };
 
   return (
@@ -134,8 +137,13 @@ export const NewProduct = () => {
             />
 
             <br />
-            <Button type="submit" className="mt-2" color="primary">
-              Crear
+            <Button
+              type="submit"
+              className="mt-2"
+              color="primary"
+              isDisabled={productMutation.isPending}
+            >
+              {productMutation.isPending ? "Cargando..." : "Crear producto"}
             </Button>
           </div>
 

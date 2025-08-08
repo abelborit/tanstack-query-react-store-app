@@ -12,3 +12,11 @@ export interface RatingInterface {
   rate: number;
   count: number;
 }
+
+export interface NewProductInterface {
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+}
