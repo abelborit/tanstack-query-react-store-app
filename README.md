@@ -25,3 +25,18 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+---
+
+# Temas puntuales de la sección
+
+Esta sección tiene por objetivo lo siguiente:
+
+- Aprender sobre mutaciones
+- Mutaciones optimistas
+- Manejo de errores
+- Actualizar e invalidar data
+- Establecer data en caché manualmente después de la mutación
+- Eliminación en caso de fallo en una actualización optimista
+
+Inicialmente, veremos la forma tradicional y simple de hacer uso del useMutation, pero luego lo expandiremos para tener mutaciones optimistas que darán una experiencia de usuario muy buena y dar la apariencia de que su aplicación literalmente no tiene demora en las peticiones http.
