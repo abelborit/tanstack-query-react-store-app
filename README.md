@@ -40,3 +40,9 @@ Esta sección tiene por objetivo lo siguiente:
 - Eliminación en caso de fallo en una actualización optimista
 
 Inicialmente, veremos la forma tradicional y simple de hacer uso del useMutation, pero luego lo expandiremos para tener mutaciones optimistas que darán una experiencia de usuario muy buena y dar la apariencia de que su aplicación literalmente no tiene demora en las peticiones http.
+
+---
+
+## NOTAS:
+
+- React Hook Form vs Formik: https://medium.com/@ignatovich.dm/react-hook-form-vs-formik-44144e6a01d8
