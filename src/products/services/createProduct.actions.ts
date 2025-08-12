@@ -19,7 +19,7 @@ const sleep = (seconds: number = 0): Promise<boolean> => {
 export const createProductAction = async ({
   newProduct,
 }: CreateProductActionInterface) => {
-  await sleep(2);
+  await sleep(4);
 
   const { data } = await productsApi.post<ProductInterface>(
     `/products`,
