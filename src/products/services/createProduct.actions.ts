@@ -21,6 +21,9 @@ export const createProductAction = async ({
 }: CreateProductActionInterface) => {
   await sleep(4);
 
+  // await sleep(6);
+  // throw new Error("Error intencional al traer un producto");
+
   const { data } = await productsApi.post<ProductInterface>(
     `/products`,
     newProduct

@@ -49,7 +49,7 @@ export const useCreateProductMutation = () => {
 
       /* remover del cache el "optimisticProduct" que creamos porque no es necesario y no queremos que se almacene en nuestro cache */
       queryClient.removeQueries({
-        queryKey: ["products", { productId: context.optimisticProduct.id }],
+        queryKey: ["products", { productId: context?.optimisticProduct.id }],
       });
 
       /* aquí no haremos la invalidación del query para hacer de nuevo una petición, sino lo que haremos es agregar el nuevo producto o la nueva data a la data ya existente */
@@ -66,6 +66,31 @@ export const useCreateProductMutation = () => {
             return cacheProduct.id === context.optimisticProduct.id
               ? data
               : cacheProduct;
+          });
+        }
+      );
+    },
+
+    onError: (error, variables, context) => {
+      /* el "context" es básicamente la información que nos va a regresar el "onMutate" que nos ayudará a poder conectar ambos métodos de "onMutate" y "onError" */
+      console.log("onError", { error, variables, context });
+
+      /* remover del cache el "optimisticProduct" que creamos porque no es necesario ya que como surgió un error entonces esta nueva data de "optimistic update" no tendría por qué estar presente en el cache */
+      queryClient.removeQueries({
+        queryKey: ["products", { productId: context?.optimisticProduct.id }],
+      });
+
+      /* aquí haremos de nuevo un setteo de la data pero para elimiar ese producto que agregamos usando el "optimistic update" */
+      queryClient.setQueryData<ProductInterface[]>(
+        ["products", { filterKey: variables.newProduct.category }],
+        (oldState) => {
+          if (!oldState) {
+            return [];
+          }
+
+          /* eliminar el producto (el producto de la actualización optimista) de la data existente porque como hubo un error entonces no debería estar presente hacia el usuario */
+          return oldState.filter((cacheProduct) => {
+            return cacheProduct.id !== context?.optimisticProduct.id;
           });
         }
       );
